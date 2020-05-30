@@ -11,7 +11,7 @@ const app = () => {
 
     const outlineLength = outline.getTotalLength();
     
-    let fakeDuration = 600;
+    let duration = 600;
 
     outline.style.strokeDasharray = outlineLength;
     outline.style.strokeDashoffset = outlineLength;
@@ -30,8 +30,8 @@ const app = () => {
 
     timeSelect.forEach(option => {
         option.addEventListener('click', function() {
-            fakeDuration = this.getAttribute('data-time');
-            timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(fakeDuration%60)}`;
+            duration = this.getAttribute('data-time');
+            timeDisplay.textContent = `${Math.floor(duration / 60)}:${String(duration%60).padStart(2, '0')}`;
         })
     })
 
@@ -49,16 +49,17 @@ const app = () => {
 
     song.ontimeupdate = () => {
         let currentTime = song.currentTime;
-        let elapsed = fakeDuration - currentTime;
+        let elapsed = duration - currentTime;
         let seconds = Math.floor(elapsed % 60);
         let minutes = Math.floor(elapsed / 60);
 
-        let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
+        let progress = outlineLength - (currentTime / duration) * outlineLength;
         outline.style.strokeDashoffset = progress;
 
-        timeDisplay.textContent = `${minutes}:${seconds}`;
 
-        if(currentTime >= fakeDuration) {
+        timeDisplay.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
+
+        if(currentTime >= duration) {
             song.pause();
             song.currentTime = 0;
             play.src = './svg/play.svg';
