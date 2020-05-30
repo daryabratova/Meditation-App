@@ -1,15 +1,13 @@
 const app = () => {
     const appElement = document.querySelector('#app')
 
+    const switcherElement = document.querySelector('.switcher');
     const pickRainModeElement = document.querySelector('.pick-rain-mode')
     const pickBeachModeElement = document.querySelector('.pick-beach-mode')
 
     const song = document.querySelector('.song');
-    const play = document.querySelector('.play');
     const outline = document.querySelector('.moving-outline circle');
     const video = document.querySelector('.vid-container video');
-
-    const sounds = document.querySelectorAll('.sound-picker button');
 
     const timeDisplay = document.querySelector('.time-display');
     const timeSelect = document.querySelectorAll('.time-select button');
@@ -21,33 +19,30 @@ const app = () => {
     outline.style.strokeDasharray = outlineLength;
     outline.style.strokeDashoffset = outlineLength;
 
-    // sounds.forEach(sound => {
-    //     sound.addEventListener('click', function() {
-    //         song.src = this.getAttribute('data-sound');
-    //         video.src = this.getAttribute('data-video');
-
-    //         checkPlaying(song);
-    //     })
-    // })
-
     pickRainModeElement.addEventListener('click', () => {
+        appElement.classList.remove('active')
+        
         appElement.classList.add('rain')
         appElement.classList.remove('beach')
+
         song.src = "./sounds/rain.mp3";
         video.src = "./video/rain.mp4";
-        checkPlaying(song);
     })
 
     pickBeachModeElement.addEventListener('click', () => {
+        appElement.classList.remove('active')
+        
         appElement.classList.add('beach')
         appElement.classList.remove('rain')
+        
         song.src = "./sounds/beach.mp3";
         video.src = "./video/beach.mp4";
-        checkPlaying(song);
     })
 
-    play.addEventListener('click', () => {
-        checkPlaying(song);
+    switcherElement.addEventListener('click', () => {
+        appElement.classList.toggle('active');
+
+        togglePlayer();
     });
 
     timeSelect.forEach(option => {
@@ -57,15 +52,13 @@ const app = () => {
         })
     })
 
-    const checkPlaying = song => {
+    const togglePlayer = () => {
         if(song.paused) {
             song.play();
             video.play();
-            play.src = './svg/pause.svg';
         } else {
             song.pause();
             video.pause();
-            play.src = './svg/play.svg';
         }
     };
 
@@ -82,9 +75,9 @@ const app = () => {
         timeDisplay.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
 
         if(currentTime >= duration) {
+            appElement.classList.remove('active');
             song.pause();
             song.currentTime = 0;
-            play.src = './svg/play.svg';
             video.pause();
         }
 

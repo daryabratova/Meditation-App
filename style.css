@@ -95,3 +95,15 @@ video {
 #app.beach .moving-outline circle {
     stroke: #ffd180;
 }
+
+#app .player-container .switcher {
+    width: 90px;
+    height: 90px;
+    border: none;
+    cursor: pointer;
+    background: url(./svg/play.svg);
+}
+
+#app.active .player-container .switcher {
+    background: url(./svg/pause.svg);
+}
