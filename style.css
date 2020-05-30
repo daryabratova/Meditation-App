@@ -9,6 +9,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    font-family: 'Manrope', sans-serif;
 }
 
 .time-select, .sound-picker, .player-container{
@@ -59,6 +60,7 @@ video {
     border-radius: 5px;
     font-size: 20px;
     transition: all 0.5s ease;
+    font-family: inherit;
 }
 
 .time-select button:hover {
