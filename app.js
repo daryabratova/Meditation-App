@@ -1,4 +1,9 @@
 const app = () => {
+    const appElement = document.querySelector('#app')
+
+    const pickRainModeElement = document.querySelector('.pick-rain-mode')
+    const pickBeachModeElement = document.querySelector('.pick-beach-mode')
+
     const song = document.querySelector('.song');
     const play = document.querySelector('.play');
     const outline = document.querySelector('.moving-outline circle');
@@ -20,9 +25,19 @@ const app = () => {
         sound.addEventListener('click', function() {
             song.src = this.getAttribute('data-sound');
             video.src = this.getAttribute('data-video');
-            outline.style.stroke = this.getAttribute('data-color');
+
             checkPlaying(song);
         })
+    })
+
+    pickRainModeElement.addEventListener('click', () => {
+        appElement.classList.add('rain')
+        appElement.classList.remove('beach')
+    })
+
+    pickBeachModeElement.addEventListener('click', () => {
+        appElement.classList.add('beach')
+        appElement.classList.remove('rain')
     })
 
     play.addEventListener('click', () => {

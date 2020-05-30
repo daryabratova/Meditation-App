@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.app {
+#app {
     height: 100vh;
     display: flex;
     justify-content: space-evenly;
@@ -86,4 +86,12 @@ video {
 
 .sound-picker button img {
     height: 100%;
+}
+
+#app.rain .moving-outline circle {
+    stroke: #c6cdff;
+}
+
+#app.beach .moving-outline circle {
+    stroke: #ffd180;
 }
