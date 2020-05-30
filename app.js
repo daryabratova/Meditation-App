@@ -21,23 +21,29 @@ const app = () => {
     outline.style.strokeDasharray = outlineLength;
     outline.style.strokeDashoffset = outlineLength;
 
-    sounds.forEach(sound => {
-        sound.addEventListener('click', function() {
-            song.src = this.getAttribute('data-sound');
-            video.src = this.getAttribute('data-video');
+    // sounds.forEach(sound => {
+    //     sound.addEventListener('click', function() {
+    //         song.src = this.getAttribute('data-sound');
+    //         video.src = this.getAttribute('data-video');
 
-            checkPlaying(song);
-        })
-    })
+    //         checkPlaying(song);
+    //     })
+    // })
 
     pickRainModeElement.addEventListener('click', () => {
         appElement.classList.add('rain')
         appElement.classList.remove('beach')
+        song.src = "./sounds/rain.mp3";
+        video.src = "./video/rain.mp4";
+        checkPlaying(song);
     })
 
     pickBeachModeElement.addEventListener('click', () => {
         appElement.classList.add('beach')
         appElement.classList.remove('rain')
+        song.src = "./sounds/beach.mp3";
+        video.src = "./video/beach.mp4";
+        checkPlaying(song);
     })
 
     play.addEventListener('click', () => {
