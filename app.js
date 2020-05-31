@@ -1,5 +1,14 @@
 const app = () => {
-    const appElement = document.querySelector('#app')
+    const formatTime = seconds => {
+        const parts = [
+            seconds % 60,
+            seconds / 60
+        ];
+
+        return parts.reverse().map(part => String(Math.floor(part)).padStart(2, '0')).join(':');
+    };
+
+    const appElement = document.querySelector('#app');
 
     const switcherElement = document.querySelector('.switcher');
     const pickRainModeElement = document.querySelector('.pick-rain-mode')
@@ -15,6 +24,8 @@ const app = () => {
     const outlineLength = outline.getTotalLength();
     
     let duration = 600;
+
+    timeDisplay.textContent = formatTime(duration);
 
     outline.style.strokeDasharray = outlineLength;
     outline.style.strokeDashoffset = outlineLength;
@@ -48,7 +59,7 @@ const app = () => {
     timeSelect.forEach(option => {
         option.addEventListener('click', function() {
             duration = this.getAttribute('data-time');
-            timeDisplay.textContent = `${Math.floor(duration / 60)}:${String(duration%60).padStart(2, '0')}`;
+            timeDisplay.textContent = formatTime(duration);
         })
     })
 
@@ -65,14 +76,11 @@ const app = () => {
     song.ontimeupdate = () => {
         let currentTime = song.currentTime;
         let elapsed = duration - currentTime;
-        let seconds = Math.floor(elapsed % 60);
-        let minutes = Math.floor(elapsed / 60);
 
         let progress = outlineLength - (currentTime / duration) * outlineLength;
         outline.style.strokeDashoffset = progress;
 
-
-        timeDisplay.textContent = `${minutes}:${String(seconds).padStart(2, '0')}`;
+        timeDisplay.textContent = formatTime(elapsed);
 
         if(currentTime >= duration) {
             appElement.classList.remove('active');
