@@ -23,14 +23,120 @@ const app = () => {
 
     const outlineLength = outline.getTotalLength();
     
-    let duration = 600;
+    const createTimer = () => {
 
-    timeDisplay.textContent = formatTime(duration);
+        let timerInterval, isPaused, timePassed, timeStamp, tickIntervalId;
+
+        isPaused = true;
+        timePassed = 0;
+
+        const tick = (props) => {
+            const { timePassed, isFirst = false, isLast = false } = props;
+
+            console.log(timePassed);
+
+            const timeElapsed = timerInterval - timePassed;
+
+            const progress = outlineLength - (timePassed / timerInterval) * outlineLength;
+            outline.style.strokeDashoffset = progress;
+
+            timeDisplay.textContent = formatTime(timeElapsed);
+            
+            if (isLast) {                
+                appElement.classList.remove('active');
+
+                timeDisplay.textContent = formatTime(timerInterval);
+
+                song.pause();
+                song.currentTime = 0;
+
+                video.pause();
+            }
+        }
+
+        const getTimePassedFromLastStamp = () => {
+            return Math.floor((Date.now() - timeStamp) / 1000);
+        }
+
+        const setTimerInterval = (seconds) => {
+            timerInterval = seconds;
+        };
+        
+        const startTimer = () => {
+            if (isPaused) {
+                isPaused = false;
+
+                tick({
+                    timePassed,
+                    isFirst: timePassed === 0,
+                });
+
+                timeStamp = Date.now();
+
+                tickIntervalId = setInterval(() => {
+                    const timePassedFromLastStamp = getTimePassedFromLastStamp();
+                    
+                    tick({
+                        timePassed: timePassed + timePassedFromLastStamp,
+                    });
+
+                    if (timePassed + timePassedFromLastStamp >= timerInterval) {
+                        resetTimer();
+                    }
+                }, 1000/5);
+            } 
+        };
+
+        const pauseTimer = () => {
+            if (!isPaused) {
+                isPaused = true;
+
+                clearInterval(tickIntervalId);
+            
+                const timePassedFromLastStamp = getTimePassedFromLastStamp();
+
+                timePassed = timePassed + timePassedFromLastStamp;
+
+                tick({
+                    timePassed,
+                });
+            }
+        };
+
+        const resetTimer = () => {
+            isPaused = true;
+
+            clearInterval(tickIntervalId);
+
+            timePassed = 0;
+
+            tick({
+                timePassed,
+                isLast: true,
+            });
+        };
+
+        return {
+            setTimerInterval,
+            startTimer,
+            pauseTimer,
+            resetTimer,
+        }
+    }
+
+    const defaultTimerInterval = 600;
+
+    const timer = createTimer();
+    timer.setTimerInterval(defaultTimerInterval);
+
+    timeDisplay.textContent = formatTime(defaultTimerInterval);
 
     outline.style.strokeDasharray = outlineLength;
     outline.style.strokeDashoffset = outlineLength;
 
     pickRainModeElement.addEventListener('click', () => {
+        timer.resetTimer();
+
         appElement.classList.remove('active')
         
         appElement.classList.add('rain')
@@ -41,6 +147,8 @@ const app = () => {
     })
 
     pickBeachModeElement.addEventListener('click', () => {
+        timer.resetTimer();
+
         appElement.classList.remove('active')
         
         appElement.classList.add('beach')
@@ -58,39 +166,28 @@ const app = () => {
 
     timeSelect.forEach(option => {
         option.addEventListener('click', function() {
-            duration = this.getAttribute('data-time');
-            timeDisplay.textContent = formatTime(duration);
+            const time = this.getAttribute('data-time');
+
+            timer.resetTimer();
+            timer.setTimerInterval(time);
+
+            timeDisplay.textContent = formatTime(time);
         })
     })
 
     const togglePlayer = () => {
         if(song.paused) {
+            timer.startTimer();
+
             song.play();
             video.play();
         } else {
+            timer.pauseTimer();
+
             song.pause();
             video.pause();
         }
-    };
-
-    song.ontimeupdate = () => {
-        let currentTime = song.currentTime;
-        let elapsed = duration - currentTime;
-
-        let progress = outlineLength - (currentTime / duration) * outlineLength;
-        outline.style.strokeDashoffset = progress;
-
-        timeDisplay.textContent = formatTime(elapsed);
-
-        if(currentTime >= duration) {
-            appElement.classList.remove('active');
-            song.pause();
-            song.currentTime = 0;
-            video.pause();
-        }
-
-    }
-    
+    };    
 };
 
 app();
