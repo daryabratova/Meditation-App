@@ -14,9 +14,9 @@ const app = () => {
     const pickRainModeElement = document.querySelector('.pick-rain-mode')
     const pickBeachModeElement = document.querySelector('.pick-beach-mode')
 
-    const song = document.querySelector('.song');
+    const song = document.querySelector('#audio');
     const outline = document.querySelector('.moving-outline circle');
-    const video = document.querySelector('.vid-container video');
+    const video = document.querySelector('#video');
 
     const timeDisplay = document.querySelector('.time-display');
     const timeSelect = document.querySelectorAll('.time-select button');
