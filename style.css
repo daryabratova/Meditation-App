@@ -114,7 +114,30 @@ body {
     background-repeat: no-repeat; 
 }
 
-@media (min-width: 992px) {
+@media (min-width: 550px) and (max-width: 996px) {
+
+    .player-container svg {
+        height: 320px;
+    }
+        
+    .time-display {
+        padding-top: 36px;
+        font-size: 52px;
+    }
+        
+    .time-select button, 
+    .sound-picker button {
+        font-size: 26px;
+    }
+        
+    .sound-picker button {
+        height: 142px;
+        width: 142px;
+        padding: 30px;
+    }    
+}
+
+@media (min-width: 996px) {
     .layout {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: none;
