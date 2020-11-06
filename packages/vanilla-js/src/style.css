@@ -104,13 +104,13 @@ body {
   height: 80px;
   border: none;
   cursor: pointer;
-  background: url(./svg/play.svg);
+  background: url(./assets/images/play.svg);
   background-size: 80px 80px;
   background-repeat: no-repeat;
 }
 
 #app.active .player-container .switcher {
-  background: url(./svg/pause.svg);
+  background: url(./assets/images/pause.svg);
   background-size: 80px 80px;
   background-repeat: no-repeat;
 }
@@ -240,10 +240,10 @@ body {
     height: 90px;
     border: none;
     cursor: pointer;
-    background: url(./svg/play.svg);
+    background: url(./assets/images/play.svg);
   }
 
   #app.active .player-container .switcher {
-    background: url(./svg/pause.svg);
+    background: url(./assets/images/pause.svg);
   }
 }

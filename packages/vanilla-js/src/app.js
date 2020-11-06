@@ -142,8 +142,8 @@ const app = () => {
         appElement.classList.add('rain')
         appElement.classList.remove('beach')
 
-        song.src = "./sounds/rain.mp3";
-        video.src = "./video/rain.mp4";
+        song.src = "./assets/sounds/rain.mp3";
+        video.src = "./assets/videos/rain.mp4";
     })
 
     pickBeachModeElement.addEventListener('click', () => {
@@ -154,8 +154,8 @@ const app = () => {
         appElement.classList.add('beach')
         appElement.classList.remove('rain')
         
-        song.src = "./sounds/beach.mp3";
-        video.src = "./video/beach.mp4";
+        song.src = "./assets/sounds/beach.mp3";
+        video.src = "./assets/videos/beach.mp4";
     })
 
     switcherElement.addEventListener('click', () => {
