@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Meditation App</title>
+  </head>
+
+  <body>
+    <div id="app" class="rain">
+      <audio id="audio">
+        <source src="./assets/sounds/rain.mp3" />
+      </audio>
+      <video id="video" loop>
+        <source src="./assets/videos/rain.mp4" type="video/mp4" />
+      </video>
+
+      <div class="layout">
+        <div class="time-select">
+          <button data-time="120">2 minutes</button>
+          <button data-time="300">5 minutes</button>
+          <button data-time="600">10 minutes</button>
+        </div>
+
+        <div class="player-container">
+          <button class="switcher" autofocus></button>
+          <svg
+            class="track-outline"
+            width="453"
+            height="453"
+            viewBox="0 0 453 453"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="226.5"
+              cy="226.5"
+              r="216.5"
+              stroke="white"
+              stroke-width="20"
+            />
+          </svg>
+          <svg
+            class="moving-outline"
+            width="453"
+            height="453"
+            viewBox="0 0 453 453"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="226.5" cy="226.5" r="216.5" stroke-width="20" />
+          </svg>
+          <p class="time-display">0:00</h3>
+        </div>
+
+        <div class="sound-picker">
+          <button class="pick-rain-mode">
+            <img src="./assets/images/rain.svg" alt="rain" />
+          </button>
+          <button class="pick-beach-mode">
+            <img src="./assets/images/beach.svg" alt="beach" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

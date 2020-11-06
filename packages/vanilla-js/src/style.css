@@ -1,0 +1,249 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+
+body {
+  background-color: white;
+}
+
+.layout {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  height: 100vh;
+  font-family: "Manrope", sans-serif;
+}
+
+.time-select,
+.sound-picker,
+.player-container {
+  height: 80%;
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.player-container {
+  position: relative;
+}
+
+.player-container svg {
+  position: absolute;
+  height: 180px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  pointer-events: none;
+}
+
+.time-display {
+  position: absolute;
+  top: 80%;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#video {
+  position: fixed;
+  top: 0;
+  left: -50%;
+  z-index: -1;
+  min-width: 100%;
+  height: 100%;
+  transform: translateX(50vw);
+}
+
+.time-select button,
+.sound-picker button {
+  color: white;
+  width: 25%;
+  height: 35%;
+  background: none;
+  border: 2px solid white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+  font-family: inherit;
+}
+
+.time-select button:hover {
+  color: black;
+  background-color: white;
+}
+
+.sound-picker button {
+  border: none;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  padding: 16px;
+}
+
+.sound-picker button:nth-child(1) {
+  background: #c6cdff;
+}
+
+.sound-picker button:nth-child(2) {
+  background: #ffd180;
+}
+
+.sound-picker button img {
+  height: 100%;
+}
+
+#app.rain .moving-outline circle {
+  stroke: #c6cdff;
+}
+
+#app.beach .moving-outline circle {
+  stroke: #ffd180;
+}
+
+#app .player-container .switcher {
+  width: 80px;
+  height: 80px;
+  border: none;
+  cursor: pointer;
+  background: url(./assets/images/play.svg);
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+}
+
+#app.active .player-container .switcher {
+  background: url(./assets/images/pause.svg);
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 550px) and (max-width: 996px) {
+  .player-container svg {
+    height: 320px;
+  }
+
+  .time-display {
+    padding-top: 36px;
+    font-size: 52px;
+  }
+
+  .time-select button,
+  .sound-picker button {
+    font-size: 26px;
+  }
+
+  .sound-picker button {
+    height: 142px;
+    width: 142px;
+    padding: 30px;
+  }
+}
+
+@media (min-width: 996px) {
+  .layout {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: none;
+    width: 100%;
+  }
+
+  .time-select,
+  .sound-picker,
+  .player-container {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .player-container {
+    height: 90%;
+    position: relative;
+  }
+
+  .player-container svg {
+    position: absolute;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    pointer-events: none;
+  }
+
+  .time-display {
+    top: 480px;
+    position: absolute;
+    bottom: 10%;
+    color: white;
+    font-size: 50px;
+  }
+
+  #video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    position: fixed;
+    transform: none;
+  }
+
+  .time-select button,
+  .sound-picker button {
+    color: white;
+    width: 30%;
+    height: 10%;
+    background: none;
+    border: 2px solid white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: all 0.5s ease;
+    font-family: inherit;
+  }
+
+  .time-select button:hover {
+    color: black;
+    background-color: white;
+  }
+
+  .sound-picker button {
+    border: none;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    padding: 30px;
+  }
+
+  .sound-picker button:nth-child(1) {
+    background: #c6cdff;
+  }
+
+  .sound-picker button:nth-child(2) {
+    background: #ffd180;
+  }
+
+  .sound-picker button img {
+    height: 100%;
+  }
+
+  #app.rain .moving-outline circle {
+    stroke: #c6cdff;
+  }
+
+  #app.beach .moving-outline circle {
+    stroke: #ffd180;
+  }
+
+  #app .player-container .switcher {
+    width: 90px;
+    height: 90px;
+    border: none;
+    cursor: pointer;
+    background: url(./assets/images/play.svg);
+  }
+
+  #app.active .player-container .switcher {
+    background: url(./assets/images/pause.svg);
+  }
+}
