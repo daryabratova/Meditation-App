@@ -1,0 +1,38 @@
+.timer {
+  &__switcher {
+    all: unset;
+    width: 80px;
+    height: 80px;
+    background-image: url(../../assets/images/play.svg);
+    background-size: 80px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    &--active {
+      background-image: url(../../assets/images/pause.svg);
+    }
+
+    @media screen and (min-width: 996px) {
+      width: 112px;
+      height: 112px;
+      background-size: 112px;
+    }
+  }
+
+  &__time {
+    margin: 15px 0 0;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+
+    @media screen and (min-width: 550px) {
+      font-size: 52px;
+    }
+
+    @media screen and (min-width: 996px) {
+      margin: 30px 0 0;
+      font-size: 62px;
+    }
+  }
+}

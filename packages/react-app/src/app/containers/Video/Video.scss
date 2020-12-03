@@ -1,0 +1,15 @@
+.video {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  z-index: -1;
+  transform: translateX(50vw) translateY(50vh);
+
+  @media screen and (orientation: portrait) {
+    height: 100%;
+  }
+
+  @media screen and (orientation: landscape) {
+    width: 100%;
+  }
+}

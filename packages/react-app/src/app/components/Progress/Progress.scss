@@ -1,0 +1,45 @@
+.progress {
+  &__layout {
+    position: relative;
+    height: 250px;
+    width: 250px;
+
+    @media screen and (min-width: 550px) {
+      height: 320px;
+      width: 320px;
+    }
+
+    @media screen and (min-width: 996px) {
+      height: 400px;
+      width: 400px;
+    }
+  }
+
+  &__base-line,
+  &__moving-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+    height: 100%;
+    width: 100%;
+
+    @media screen and (min-width: 550px) {
+      height: 320px;
+      width: 320px;
+    }
+
+    @media screen and (min-width: 996px) {
+      height: 400px;
+      width: 400px;
+    }
+  }
+
+  &__content {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
