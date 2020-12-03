@@ -21,7 +21,7 @@ export const Intervals = () => {
             ...appContextValue,
             isActive: false,
             timeInterval: interval.value,
-            elapsedTime: 0,
+            timePassed: 0,
           });
         };
 

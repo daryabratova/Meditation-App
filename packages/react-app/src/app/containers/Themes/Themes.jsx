@@ -18,7 +18,7 @@ export const Themes = () => {
           setAppContextValue({
             ...appContextValue,
             isActive: false,
-            elapsedTime: 0,
+            timePassed: 0,
             theme: theme.name,
           });
         };

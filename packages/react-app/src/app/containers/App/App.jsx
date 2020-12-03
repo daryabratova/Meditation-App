@@ -25,11 +25,9 @@ export const App = () => {
   const appContextState = useState({
     isActive: false,
     timeInterval: firstInterval.value,
-    elapsedTime: 0,
+    timePassed: 0,
     theme: firstTheme.name,
   });
-
-  console.log(appContextState[0]);
 
   return (
     <AppContextProvider value={appContextState}>

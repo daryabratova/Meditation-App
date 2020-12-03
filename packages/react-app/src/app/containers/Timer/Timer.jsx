@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useAppContext } from '../../hooks/useAppContext';
 
 import { getThemeByName } from '../../data/themes';
 
+import { createTimer } from '../../helpers/timer';
 import { cn } from '../../helpers/classname';
 import { formatTime } from '../../helpers/formatTime';
 
@@ -11,11 +12,13 @@ import { Progress } from '../../components/Progress';
 
 import './Timer.scss';
 
+const timer = createTimer();
+
 const timerClassName = cn('timer');
 
 export const Timer = () => {
   const [appContextValue, setAppContextValue] = useAppContext();
-  const { isActive, timeInterval, elapsedTime, theme } = appContextValue;
+  const { isActive, timeInterval, timePassed, theme } = appContextValue;
 
   const currentTheme = getThemeByName(theme);
 
@@ -26,16 +29,57 @@ export const Timer = () => {
     });
   };
 
+  useEffect(() => {
+    timer.setTimeInterval(appContextValue.timeInterval);
+  }, [appContextValue.timeInterval]);
+
+  useEffect(() => {
+    timer.setCallback((props) => {
+      const { timePassed, isLast = false } = props;
+
+      setAppContextValue({
+        ...appContextValue,
+        timePassed,
+      });
+
+      if (isLast) {
+        setAppContextValue({
+          ...appContextValue,
+          isActive: false,
+          timePassed: 0,
+        });
+      }
+    });
+  }, [appContextValue, setAppContextValue]);
+
+  useEffect(() => {
+    if (appContextValue.isActive) {
+      timer.start();
+    } else {
+      timer.pause();
+    }
+  }, [appContextValue.isActive]);
+
+  useEffect(() => {
+    timer.reset();
+  }, [appContextValue.timeInterval, appContextValue.theme]);
+
+  useEffect(() => {
+    if (appContextValue.timePassed === 0) {
+      timer.reset();
+    }
+  }, [appContextValue.timePassed]);
+
   return (
     <div className={timerClassName('layout')}>
-      <Progress value={0.5} color={currentTheme.color}>
+      <Progress value={timePassed / timeInterval} color={currentTheme.color}>
         <button
           className={timerClassName('switcher', { active: isActive })}
           onClick={handleClick}
           autoFocus
         />
       </Progress>
-      <div className={timerClassName('time')}>{formatTime(timeInterval - elapsedTime)}</div>
+      <div className={timerClassName('time')}>{formatTime(timeInterval - timePassed)}</div>
     </div>
   );
 };
