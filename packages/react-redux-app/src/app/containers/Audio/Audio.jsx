@@ -1,10 +1,13 @@
 import React, { useRef, useEffect } from 'react';
-import { useAppContext } from '../../hooks/useAppContext';
+
+import { useSelector } from 'react-redux';
+
 import { getThemeByName } from '../../data/themes';
+import { getActive, getTheme } from '../../redux/selectors';
 
 export const Audio = () => {
-  const [appContextValue] = useAppContext();
-  const { isActive, theme } = appContextValue;
+  const isActive = useSelector(getActive);
+  const theme = useSelector(getTheme);
 
   const currentTheme = getThemeByName(theme);
 

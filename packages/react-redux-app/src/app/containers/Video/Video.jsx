@@ -1,15 +1,18 @@
 import React, { useRef, useEffect } from 'react';
 
-import { useAppContext } from '../../hooks/useAppContext';
+import { useSelector } from 'react-redux';
+
 import { getThemeByName } from '../../data/themes';
+import { getActive, getTheme } from '../../redux/selectors';
 
 import './Video.scss';
 
 export const Video = () => {
-  const [appContextValue] = useAppContext();
   const videoRef = useRef(null);
 
-  const { isActive, theme } = appContextValue;
+  const isActive = useSelector(getActive);
+  const theme = useSelector(getTheme);
+
   const currentTheme = getThemeByName(theme);
 
   useEffect(() => {

@@ -1,28 +1,25 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import { intervalList } from '../../data/intervals';
 
-import { useAppContext } from '../../hooks/useAppContext';
-
 import { cn } from '../../helpers/classname';
+
+import { setTimeInterval } from '../../redux/actions';
 
 import './Intervals.scss';
 
 const intervalsClassName = cn('intervals');
 
 export const Intervals = () => {
-  const [appContextValue, setAppContextValue] = useAppContext();
+  const dispatch = useDispatch();
 
   return (
     <div className={intervalsClassName('layout')}>
       {intervalList.map((interval) => {
         const handleClick = () => {
-          setAppContextValue({
-            ...appContextValue,
-            isActive: false,
-            timeInterval: interval.value,
-            timePassed: 0,
-          });
+          dispatch(setTimeInterval(interval.value));
         };
 
         return (

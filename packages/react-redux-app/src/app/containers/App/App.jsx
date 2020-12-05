@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { appContext } from '../../contexts/appContext';
-
-import { intervalList } from '../../data/intervals';
-import { themeList } from '../../data/themes';
+import React from 'react';
+import { Provider } from 'react-redux';
 
 import { cn } from '../../helpers/classname';
+
+import { store } from '../../redux/store';
 
 import { Audio } from '../Audio';
 import { Video } from '../Video';
@@ -14,23 +13,11 @@ import { Themes } from '../Themes';
 
 import './App.scss';
 
-const { Provider: AppContextProvider } = appContext;
-
-const [firstInterval] = intervalList;
-const [firstTheme] = themeList;
-
 const appClassName = cn('app');
 
 export const App = () => {
-  const appContextState = useState({
-    isActive: false,
-    timeInterval: firstInterval.value,
-    timePassed: 0,
-    theme: firstTheme.name,
-  });
-
   return (
-    <AppContextProvider value={appContextState}>
+    <Provider store={store}>
       <Audio />
       <Video />
       <div className={appClassName('layout')}>
@@ -38,6 +25,6 @@ export const App = () => {
         <Timer />
         <Themes />
       </div>
-    </AppContextProvider>
+    </Provider>
   );
 };

@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 
-import { useAppContext } from '../../hooks/useAppContext';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { getThemeByName } from '../../data/themes';
 
 import { createTimer } from '../../helpers/timer';
 import { cn } from '../../helpers/classname';
 import { formatTime } from '../../helpers/formatTime';
+
+import { getActive, getTimeInterval, getTimePassed, getTheme } from '../../redux/selectors';
+import { toggleTimer, setTimePassed, resetTimer } from '../../redux/actions';
 
 import { Progress } from '../../components/Progress';
 
@@ -17,58 +20,48 @@ const timer = createTimer();
 const timerClassName = cn('timer');
 
 export const Timer = () => {
-  const [appContextValue, setAppContextValue] = useAppContext();
-  const { isActive, timeInterval, timePassed, theme } = appContextValue;
+  const isActive = useSelector(getActive);
+  const timeInterval = useSelector(getTimeInterval);
+  const timePassed = useSelector(getTimePassed);
+  const theme = useSelector(getTheme);
+
+  const dispatch = useDispatch();
 
   const currentTheme = getThemeByName(theme);
 
   const handleClick = () => {
-    setAppContextValue({
-      ...appContextValue,
-      isActive: !isActive,
-    });
+    dispatch(toggleTimer());
   };
 
   useEffect(() => {
-    timer.setTimeInterval(appContextValue.timeInterval);
-  }, [appContextValue.timeInterval]);
+    timer.setTimeInterval(timeInterval);
+  }, [timeInterval]);
 
   useEffect(() => {
     timer.setCallback((props) => {
       const { timePassed, isLast = false } = props;
 
-      setAppContextValue({
-        ...appContextValue,
-        timePassed,
-      });
+      dispatch(setTimePassed(timePassed));
 
       if (isLast) {
-        setAppContextValue({
-          ...appContextValue,
-          isActive: false,
-          timePassed: 0,
-        });
+        dispatch(resetTimer());
       }
     });
-  }, [appContextValue, setAppContextValue]);
+  }, []);
 
   useEffect(() => {
-    if (appContextValue.isActive) {
+    if (isActive) {
       timer.start();
     } else {
       timer.pause();
     }
-  }, [appContextValue.isActive]);
+  }, [isActive]);
 
   useEffect(() => {
-    timer.reset();
-  }, [appContextValue.timeInterval, appContextValue.theme]);
-
-  useEffect(() => {
-    if (appContextValue.timePassed === 0) {
+    if (timePassed === 0) {
       timer.reset();
     }
-  }, [appContextValue.timePassed]);
+  }, [timePassed]);
 
   return (
     <div className={timerClassName('layout')}>

@@ -1,26 +1,24 @@
 import React from 'react';
 
-import { useAppContext } from '../../hooks/useAppContext';
+import { useDispatch } from 'react-redux';
+
 import { themeList } from '../../data/themes';
 import { cn } from '../../helpers/classname';
+
+import { setTheme } from '../../redux/actions';
 
 import './Themes.scss';
 
 const themesClassName = cn('themes');
 
 export const Themes = () => {
-  const [appContextValue, setAppContextValue] = useAppContext();
+  const dispatch = useDispatch();
 
   return (
     <div className={themesClassName('layout')}>
       {themeList.map((theme) => {
         const handleClick = () => {
-          setAppContextValue({
-            ...appContextValue,
-            isActive: false,
-            timePassed: 0,
-            theme: theme.name,
-          });
+          dispatch(setTheme(theme.name));
         };
 
         return (
