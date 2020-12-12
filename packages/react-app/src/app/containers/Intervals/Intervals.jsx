@@ -11,17 +11,19 @@ import './Intervals.scss';
 const intervalsClassName = cn('intervals');
 
 export const Intervals = () => {
-  const [appContextValue, setAppContextValue] = useAppContext();
+  const [, setAppContextValue] = useAppContext();
 
   return (
     <div className={intervalsClassName('layout')}>
       {intervalList.map((interval) => {
         const handleClick = () => {
-          setAppContextValue({
-            ...appContextValue,
-            isActive: false,
-            timeInterval: interval.value,
-            timePassed: 0,
+          setAppContextValue((appContextValue) => {
+            return {
+              ...appContextValue,
+              isActive: false,
+              timeInterval: interval.value,
+              timePassed: 0,
+            };
           });
         };
 

@@ -9,17 +9,19 @@ import './Themes.scss';
 const themesClassName = cn('themes');
 
 export const Themes = () => {
-  const [appContextValue, setAppContextValue] = useAppContext();
+  const [, setAppContextValue] = useAppContext();
 
   return (
     <div className={themesClassName('layout')}>
       {themeList.map((theme) => {
         const handleClick = () => {
-          setAppContextValue({
-            ...appContextValue,
-            isActive: false,
-            timePassed: 0,
-            theme: theme.name,
+          setAppContextValue((appContextValue) => {
+            return {
+              ...appContextValue,
+              isActive: false,
+              timePassed: 0,
+              theme: theme.name,
+            };
           });
         };
 
