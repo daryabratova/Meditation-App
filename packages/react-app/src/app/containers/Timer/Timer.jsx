@@ -23,9 +23,11 @@ export const Timer = () => {
   const currentTheme = getThemeByName(theme);
 
   const handleClick = () => {
-    setAppContextValue({
-      ...appContextValue,
-      isActive: !isActive,
+    setAppContextValue((appContextValue) => {
+      return {
+        ...appContextValue,
+        isActive: !isActive,
+      };
     });
   };
 
@@ -37,20 +39,24 @@ export const Timer = () => {
     timer.setCallback((props) => {
       const { timePassed, isLast = false } = props;
 
-      setAppContextValue({
-        ...appContextValue,
-        timePassed,
+      setAppContextValue((appContextValue) => {
+        return {
+          ...appContextValue,
+          timePassed,
+        };
       });
 
       if (isLast) {
-        setAppContextValue({
-          ...appContextValue,
-          isActive: false,
-          timePassed: 0,
+        setAppContextValue((appContextValue) => {
+          return {
+            ...appContextValue,
+            isActive: false,
+            timePassed: 0,
+          };
         });
       }
     });
-  }, [appContextValue, setAppContextValue]);
+  }, []);
 
   useEffect(() => {
     if (appContextValue.isActive) {
