@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react';
-import { useAppContext } from '../../hooks/useAppContext';
+import { useAppState } from '../../hooks/useAppState';
 import { getThemeByName } from '../../data/themes';
 
 export const Audio = () => {
-  const [appContextValue] = useAppContext();
-  const { isActive, theme } = appContextValue;
+  const [appState] = useAppState();
+  const { isActive, theme } = appState;
 
   const currentTheme = getThemeByName(theme);
 

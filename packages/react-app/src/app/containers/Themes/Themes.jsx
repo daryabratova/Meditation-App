@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAppContext } from '../../hooks/useAppContext';
+import { useAppState } from '../../hooks/useAppState';
 import { themeList } from '../../data/themes';
 import { cn } from '../../helpers/classname';
 
@@ -9,15 +9,15 @@ import './Themes.scss';
 const themesClassName = cn('themes');
 
 export const Themes = () => {
-  const [, setAppContextValue] = useAppContext();
+  const [, setAppState] = useAppState();
 
   return (
     <div className={themesClassName('layout')}>
       {themeList.map((theme) => {
         const handleClick = () => {
-          setAppContextValue((appContextValue) => {
+          setAppState((appState) => {
             return {
-              ...appContextValue,
+              ...appState,
               isActive: false,
               timePassed: 0,
               theme: theme.name,

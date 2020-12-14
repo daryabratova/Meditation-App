@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useAppContext } from '../../hooks/useAppContext';
+import { useAppState } from '../../hooks/useAppState';
 
 import { getThemeByName } from '../../data/themes';
 
@@ -17,39 +17,39 @@ const timer = createTimer();
 const timerClassName = cn('timer');
 
 export const Timer = () => {
-  const [appContextValue, setAppContextValue] = useAppContext();
-  const { isActive, timeInterval, timePassed, theme } = appContextValue;
+  const [appState, setAppState] = useAppState();
+  const { isActive, timeInterval, timePassed, theme } = appState;
 
   const currentTheme = getThemeByName(theme);
 
   const handleClick = () => {
-    setAppContextValue((appContextValue) => {
+    setAppState((appState) => {
       return {
-        ...appContextValue,
+        ...appState,
         isActive: !isActive,
       };
     });
   };
 
   useEffect(() => {
-    timer.setTimeInterval(appContextValue.timeInterval);
-  }, [appContextValue.timeInterval]);
+    timer.setTimeInterval(appState.timeInterval);
+  }, [appState.timeInterval]);
 
   useEffect(() => {
     timer.setCallback((props) => {
       const { timePassed, isLast = false } = props;
 
-      setAppContextValue((appContextValue) => {
+      setAppState((appState) => {
         return {
-          ...appContextValue,
+          ...appState,
           timePassed,
         };
       });
 
       if (isLast) {
-        setAppContextValue((appContextValue) => {
+        setAppState((appState) => {
           return {
-            ...appContextValue,
+            ...appState,
             isActive: false,
             timePassed: 0,
           };
@@ -59,22 +59,22 @@ export const Timer = () => {
   }, []);
 
   useEffect(() => {
-    if (appContextValue.isActive) {
+    if (appState.isActive) {
       timer.start();
     } else {
       timer.pause();
     }
-  }, [appContextValue.isActive]);
+  }, [appState.isActive]);
 
   useEffect(() => {
     timer.reset();
-  }, [appContextValue.timeInterval, appContextValue.theme]);
+  }, [appState.timeInterval, appState.theme]);
 
   useEffect(() => {
-    if (appContextValue.timePassed === 0) {
+    if (appState.timePassed === 0) {
       timer.reset();
     }
-  }, [appContextValue.timePassed]);
+  }, [appState.timePassed]);
 
   return (
     <div className={timerClassName('layout')}>
