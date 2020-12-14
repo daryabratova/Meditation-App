@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { appContext } from '../../contexts/appContext';
+import { appState } from '../../contexts/appState';
 
 import { intervalList } from '../../data/intervals';
 import { themeList } from '../../data/themes';
@@ -14,7 +14,7 @@ import { Themes } from '../Themes';
 
 import './App.scss';
 
-const { Provider: AppContextProvider } = appContext;
+const { Provider: AppStateProvider } = appState;
 
 const [firstInterval] = intervalList;
 const [firstTheme] = themeList;
@@ -22,7 +22,7 @@ const [firstTheme] = themeList;
 const appClassName = cn('app');
 
 export const App = () => {
-  const appContextState = useState({
+  const appStateValue = useState({
     isActive: false,
     timeInterval: firstInterval.value,
     timePassed: 0,
@@ -30,7 +30,7 @@ export const App = () => {
   });
 
   return (
-    <AppContextProvider value={appContextState}>
+    <AppStateProvider value={appStateValue}>
       <Audio />
       <Video />
       <div className={appClassName('layout')}>
@@ -38,6 +38,6 @@ export const App = () => {
         <Timer />
         <Themes />
       </div>
-    </AppContextProvider>
+    </AppStateProvider>
   );
 };

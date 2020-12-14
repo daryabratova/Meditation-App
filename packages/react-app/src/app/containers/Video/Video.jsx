@@ -1,15 +1,15 @@
 import React, { useRef, useEffect } from 'react';
 
-import { useAppContext } from '../../hooks/useAppContext';
+import { useAppState } from '../../hooks/useAppState';
 import { getThemeByName } from '../../data/themes';
 
 import './Video.scss';
 
 export const Video = () => {
-  const [appContextValue] = useAppContext();
+  const [appState] = useAppState();
   const videoRef = useRef(null);
 
-  const { isActive, theme } = appContextValue;
+  const { isActive, theme } = appState;
   const currentTheme = getThemeByName(theme);
 
   useEffect(() => {
