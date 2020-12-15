@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.6c48dccd.chunk.css",
-    "main.js": "/static/js/main.59bd93f1.chunk.js",
-    "main.js.map": "/static/js/main.59bd93f1.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.74858a69.js",
-    "runtime-main.js.map": "/static/js/runtime-main.74858a69.js.map",
-    "static/js/2.d07c732b.chunk.js": "/static/js/2.d07c732b.chunk.js",
-    "static/js/2.d07c732b.chunk.js.map": "/static/js/2.d07c732b.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.6c48dccd.chunk.css.map": "/static/css/main.6c48dccd.chunk.css.map",
-    "static/js/2.d07c732b.chunk.js.LICENSE.txt": "/static/js/2.d07c732b.chunk.js.LICENSE.txt",
-    "static/media/beach.d1908973.mp3": "/static/media/beach.d1908973.mp3",
-    "static/media/beach.d6f3fec5.mp4": "/static/media/beach.d6f3fec5.mp4",
-    "static/media/Timer.scss": "/static/media/play.cff0dbf1.svg",
-    "static/media/rain.a64d3829.svg": "/static/media/rain.a64d3829.svg",
-    "static/media/rain.cdc4e810.mp4": "/static/media/rain.cdc4e810.mp4",
-    "static/media/rain.e1d6cbce.mp3": "/static/media/rain.e1d6cbce.mp3",
-    "static/media/sun.a774fd96.svg": "/static/media/sun.a774fd96.svg"
+    "main.css": "/Meditation-App/static/css/main.9ab27eb1.chunk.css",
+    "main.js": "/Meditation-App/static/js/main.59bd93f1.chunk.js",
+    "main.js.map": "/Meditation-App/static/js/main.59bd93f1.chunk.js.map",
+    "runtime-main.js": "/Meditation-App/static/js/runtime-main.9ef114af.js",
+    "runtime-main.js.map": "/Meditation-App/static/js/runtime-main.9ef114af.js.map",
+    "static/js/2.d07c732b.chunk.js": "/Meditation-App/static/js/2.d07c732b.chunk.js",
+    "static/js/2.d07c732b.chunk.js.map": "/Meditation-App/static/js/2.d07c732b.chunk.js.map",
+    "index.html": "/Meditation-App/index.html",
+    "static/css/main.9ab27eb1.chunk.css.map": "/Meditation-App/static/css/main.9ab27eb1.chunk.css.map",
+    "static/js/2.d07c732b.chunk.js.LICENSE.txt": "/Meditation-App/static/js/2.d07c732b.chunk.js.LICENSE.txt",
+    "static/media/beach.d1908973.mp3": "/Meditation-App/static/media/beach.d1908973.mp3",
+    "static/media/beach.d6f3fec5.mp4": "/Meditation-App/static/media/beach.d6f3fec5.mp4",
+    "static/media/Timer.scss": "/Meditation-App/static/media/play.cff0dbf1.svg",
+    "static/media/rain.a64d3829.svg": "/Meditation-App/static/media/rain.a64d3829.svg",
+    "static/media/rain.cdc4e810.mp4": "/Meditation-App/static/media/rain.cdc4e810.mp4",
+    "static/media/rain.e1d6cbce.mp3": "/Meditation-App/static/media/rain.e1d6cbce.mp3",
+    "static/media/sun.a774fd96.svg": "/Meditation-App/static/media/sun.a774fd96.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.74858a69.js",
+    "static/js/runtime-main.9ef114af.js",
     "static/js/2.d07c732b.chunk.js",
-    "static/css/main.6c48dccd.chunk.css",
+    "static/css/main.9ab27eb1.chunk.css",
     "static/js/main.59bd93f1.chunk.js"
   ]
 }
