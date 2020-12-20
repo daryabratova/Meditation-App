@@ -1,7 +1,7 @@
 {
   "name": "react-redux-app",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "https://livelife26.github.io/Meditation-App",
   "dependencies": {
     "@bem-react/classname": "^1.5.8",
     "@testing-library/jest-dom": "^5.11.4",
@@ -20,11 +20,16 @@
     "redux-devtools-extension": "^2.13.8",
     "web-vitals": "^0.2.4"
   },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
