@@ -10,6 +10,7 @@ Demo is available [here](https://livelife26.github.io/Meditation-App/).
 
 - Graphical timer with configurable time intervals
 - Switchable themes with videos and sounds of nature
+- Adaptive layout (mobile, tablet, desktop)
 
 ## Technologies
 
