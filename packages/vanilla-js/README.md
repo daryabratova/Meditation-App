@@ -1,30 +1,13 @@
-# Meditation App :herb:
-**An app with a timer and beautiful sounds of nature for focusing or relaxing.**
+# Meditation App
 
+Project realization with using HTML, CSS, JavaScript without additional libraries.
 
-## Table of contents
-  - [General Info](#general-info)
-  - [Languages](#languages)
-  - [Demo](#demo)
-  - [Sources](#sources)
+## Start the app
 
+Open `index.html` in the browser.
 
-## General Info
+## Technologies
 
-This is my training project, that was inspired by a YouTube video of [Dev Ed](https://www.youtube.com/c/DevEd). I took ready-made resources (sounds, images, and design) and write my own logic, also adding some changes to the original design. 
-
-
-## Languages
+- **HTML**
+- **CSS & Normalize.css**
 - **JavaScript**
-- **HTML**  
-- **CSS**
-
-
-## Demo 
-
-Demo is available [here](https://livelife26.github.io/Meditation-App/)
-
-
-## Sources 
-- [Build A Meditation App With Javascript HTML & CSS!](https://youtu.be/oMBXdZzYqEk)
-
