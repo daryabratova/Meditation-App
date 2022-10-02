@@ -4,7 +4,7 @@ Web app for focusing or relaxing.
 
 ## Demo
 
-Demo is available [here](https://livelife26.github.io/Meditation-App/).
+Demo is available [here](https://daryabratova.github.io/Meditation-App/).
 
 ## Features
 
